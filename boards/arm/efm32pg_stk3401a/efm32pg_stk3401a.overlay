@@ -1,0 +1,28 @@
+/ {
+        model = "Silicon Labs EFM32PG STK3401A board";
+    
+        chosen {
+            zephyr,console = &usart0;
+            zephyr,shell-uart = &usart0;
+           };
+    }
+    
+    
+    &usart1 {
+        compatible = "silabs,gecko-spi-usart";
+        location-rx = <GECKO_LOCATION(0) GECKO_PORT_C GECKO_PIN(7)>;
+        location-tx = <GECKO_LOCATION(0) GECKO_PORT_C GECKO_PIN(6)>;
+        location-clk =  <GECKO_LOCATION(0) GECKO_PORT_C GECKO_PIN(8)>;
+        
+        status = "okay";
+    
+    
+          sdhc0: sdhc@0 {
+                    compatible = "zephyr,mmc-spi-slot";
+                    reg = <0>;
+                    status = "okay";
+                    label = "SDHC0";
+                    spi-max-frequency = <24000000>;
+           };
+    };
+    
